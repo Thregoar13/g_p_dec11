@@ -20,7 +20,7 @@ class Home_Screen extends StatelessWidget {
 
   @override
     void initState() {
-    futureParklot = ParkingLot().setupDetailed();
+    //futureParklot = ParkingLot().setupDetailed();
   }
 
   @override

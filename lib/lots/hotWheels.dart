@@ -4,6 +4,8 @@ import 'package:flexible/flexible.dart';
 import 'package:g_p/pages/dataTesting.dart';
 
 
+
+String jsonURL = "https://storage.googleapis.com/getparked/HotWheelsLot4.json";
 class hotWheels extends StatelessWidget {
    hotWheels({required this.booleanParkingDataList});
 
@@ -14,7 +16,7 @@ class hotWheels extends StatelessWidget {
      parkingStalls: [],
    );
 
-   Future<ParkingLot> futureParkingLot = ParkingLot().setupDetailed1();
+   Future<ParkingLot> futureParkingLot = ParkingLot().setupDetailed(jsonURL);
 
    double imageHeight = 1080;
    double imageWidth = 1920;

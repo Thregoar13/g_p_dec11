@@ -36,14 +36,14 @@ class ParkingLot {
 
 
 
-  Future<ParkingLot> setupDetailed() async {
+  Future<ParkingLot> setupDetailed(String jsonURL) async {
 
 
     try {
 
-      String url = "https://storage.googleapis.com/getparked/CHW%20lot1.json"; //https://lora.mydevices.com/v1/networks/ttn/uplink    https://storage.googleapis.com/getparked/CHW%20lot1.json
+      //String url = "https://storage.googleapis.com/getparked/CHW%20lot1.json"; //https://lora.mydevices.com/v1/networks/ttn/uplink    https://storage.googleapis.com/getparked/CHW%20lot1.json
       //https://nam1.cloud.thethings.network/api/v3/as/applications/get-parked-lot-0/devices/eui-70b3d57ed0061863/packages/storage/uplink_message
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(Uri.parse(jsonURL));
       //print(response);
       return ParkingLot.fromJson(jsonDecode(response.body));
     }
@@ -56,14 +56,14 @@ class ParkingLot {
 
 
 
-   Future<ParkingLot> setupDetailed1() async {
+   Future<ParkingLot> setupDetailed1(String jsonURL) async {
 
 
     try {
 
-      String url = "https://storage.googleapis.com/getparked/HotWheelsLot2.json"; //https://lora.mydevices.com/v1/networks/ttn/uplink    https://storage.googleapis.com/getparked/CHW%20lot1.json
+      //String url = "https://storage.googleapis.com/getparked/HotWheelsLot2.json"; //https://lora.mydevices.com/v1/networks/ttn/uplink    https://storage.googleapis.com/getparked/CHW%20lot1.json
       //https://nam1.cloud.thethings.network/api/v3/as/applications/get-parked-lot-0/devices/eui-70b3d57ed0061863/packages/storage/uplink_message
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(Uri.parse(jsonURL));
       //print(response);
       return ParkingLot.fromJson1(jsonDecode(response.body));
     }
