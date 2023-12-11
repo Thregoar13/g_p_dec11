@@ -3,7 +3,7 @@ import 'package:g_p/format/LotLayout.dart';
 import 'package:flexible/flexible.dart';
 import 'package:g_p/pages/dataTesting.dart';
 
-String jsonURL = "https://storage.googleapis.com/getparked/CHW%20lot1.json";
+String jsonURL = "https://storage.googleapis.com/getparked/chwlot1a.json";
 
 class chwlot1 extends StatelessWidget {
   chwlot1({required this.booleanParkingDataList});

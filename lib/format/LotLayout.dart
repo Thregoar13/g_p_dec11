@@ -83,16 +83,22 @@ class ParkingStalls {
   int id = 0;
   int x = 0;
   int y = 0;
+  int OffsetX = 0;
+  int OffsetY = 0;
 
   ParkingStalls({
     this.id = 0,
     this.x = 0,
-    this.y = 0});
+    this.y = 0,
+    this.OffsetX = 0,
+    this.OffsetY = 0});
 
   ParkingStalls.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     x = json['x'];
     y = json['y'];
+    OffsetX = json['OffsetX'];
+    OffsetY = json['OffsetY'];
   }
 
 }
