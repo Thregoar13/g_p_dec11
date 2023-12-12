@@ -13,27 +13,27 @@ class chwlot1 extends StatelessWidget {
     lotURL: "https://example.com/default-lot.jpg",
     totalStalls: 0,
     parkingStalls: [],
-  );
+  ); //create a default parkinglot in case of null
 
-  Future<ParkingLot> futureParkingLot = ParkingLot().setupDetailed(jsonURL);
+  Future<ParkingLot> futureParkingLot = ParkingLot().setupDetailed(jsonURL); //get and parse the parking lot info
 
   double imageHeight = 1080;
   double imageWidth = 1920;
   int rotation = 0;
 
-  int countAvailable = -3;
-  int countOccupied = 0;
+
 
   List<bool> booleanParkingDataList = [];
 
   @override
-  Widget build(BuildContext context) {
-    if (MediaQuery.of(context).orientation == Orientation.portrait) {
+  Widget build(BuildContext context) { //build the UI
+    if (MediaQuery.of(context).orientation == Orientation.portrait) { //asks the screen orientation
       rotation = 1;
     } else {
       rotation = 0;
     }
-
+    int countAvailable = -3;
+    int countOccupied = 0;
     for (bool value in booleanParkingDataList) {
       if (value) {
         // true

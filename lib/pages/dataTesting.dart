@@ -23,6 +23,7 @@ class _TTNDataPageState extends State<TTNDataPage> {
   //List<bool> booleanParkingDataList = [true,];
   List<bool> booleanParkingDataList= [true, true, true, true,true,true,true, true, true, true, true,true,true, true,true,true,true,true,true,true,true,true,true,true,true,true,];
 
+
   List<bool> getBooleanParkingDataList() {
 
     return booleanParkingDataList;
@@ -41,31 +42,30 @@ class _TTNDataPageState extends State<TTNDataPage> {
 
   }
 
-  Future<String> GetParkingData() async {
+  Future<String> GetParkingData() async { //Function for getting parking data from tago.io and converting to booleon string
     try {
 
-      String url = "https://api.tago.io/data?variable=payload&query=last_value"; //https://lora.mydevices.com/v1/networks/ttn/uplink    https://storage.googleapis.com/getparked/CHW%20lot1.json
-      //https://nam1.cloud.thethings.network/api/v3/as/applications/get-parked-lot-0/devices/eui-70b3d57ed0061863/packages/storage/uplink_message https://storage.googleapis.com/getparked/HotWheelsLot4.json
-      final response = await http.get(Uri.parse(url),
+      String url = "https://api.tago.io/data?variable=payload&query=last_value"; //this url also encodes which specific data we would like with the ?variable&query
+      final response = await http.get(Uri.parse(url), //uses http.get to recieve parking data and uses uri to create objects from a string
           headers: {
             HttpHeaders
-                .authorizationHeader: '3a2a6522-9335-491e-addd-63521d380e5d',
+                .authorizationHeader: '3a2a6522-9335-491e-addd-63521d380e5d', //password required by tago.io
           });
-      print(response.body);
-      if (response.statusCode == 200) {
+      //print(response.body); //for testing
+      if (response.statusCode == 200) { //if we recieve a valid response
 
         // Parse JSON and extract payload
-        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        Map<String, dynamic> jsonResponse = json.decode(response.body); //map the contents of the string
 
-        if (jsonResponse.containsKey("result") &&
+        if (jsonResponse.containsKey("result") && //is this what we expected?
             jsonResponse["result"] is List &&
             jsonResponse["result"].isNotEmpty)
         {
-          print("if");
 
-          String hexPayload = jsonResponse["result"][0]["value"];
-          String binaryPayload = hexToBinary(hexPayload);
-          setBooleanParkingDataList(binaryPayload);
+
+          String hexPayload = jsonResponse["result"][0]["value"]; //we recieve a 'result' that has a 'value' we want the first one of that
+          String binaryPayload = hexToBinary(hexPayload); //converts to a string of 1's and 0's from hex
+          setBooleanParkingDataList(binaryPayload);//converts the string to booleon equivilant
 
           // Set the payload to the state variable
           setState(() {
@@ -91,12 +91,11 @@ class _TTNDataPageState extends State<TTNDataPage> {
   }
 
   void setBooleanParkingDataList(String binaryPayload) {
-    // Assuming that booleanParkingDataList should be updated based on binaryPayload
-    // You may need to adjust this logic based on your specific requirements
-    List<bool> updatedList = binaryPayload
-        .split('')
-        .map((char) => char == '1')
-        .toList();
+
+    List<bool> updatedList = binaryPayload //create list of type bool
+        .split('')//split the string in to individual characters
+        .map((char) => char == '1') //asks if char = 1 and
+        .toList(); //if yes map that value to the list
 
     setState(() {
       booleanParkingDataList = updatedList;
@@ -104,7 +103,7 @@ class _TTNDataPageState extends State<TTNDataPage> {
   }
 
   String hexToBinary(String hex) {
-    // Convert hexadecimal string to binary string
+    // Convert hexadecimal string to binary
     return BigInt.parse(hex, radix: 16).toRadixString(2);
   }
 
