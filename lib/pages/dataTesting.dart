@@ -49,7 +49,7 @@ class _TTNDataPageState extends State<TTNDataPage> {
       final response = await http.get(Uri.parse(url), //uses http.get to recieve parking data and uses uri to create objects from a string
           headers: {
             HttpHeaders
-                .authorizationHeader: '3a2a6522-9335-491e-addd-63521d380e5d', //password required by tago.io
+                .authorizationHeader: '3a2a6522-9335-491e-addd-63521d380e5d', //authorization is IoT device specific
           });
       //print(response.body); //for testing
       if (response.statusCode == 200) { //if we recieve a valid response

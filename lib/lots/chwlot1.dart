@@ -32,7 +32,7 @@ class chwlot1 extends StatelessWidget {
     } else {
       rotation = 0;
     }
-    int countAvailable = -3;
+    int countAvailable = 0;
     int countOccupied = 0;
     for (bool value in booleanParkingDataList) {
       if (value) {
@@ -168,36 +168,7 @@ class chwlot1 extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                    child: Text(
-                      'Handicapped:',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                    child: Text(
-                      ' 3',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.blueGrey,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+
             ],
           ),
         )
